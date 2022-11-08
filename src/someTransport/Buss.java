@@ -1,9 +1,46 @@
 package someTransport;
 
 public class Buss extends Transport implements Competing {
-    public Buss(String brand, String model, float engineVolume) {
-        super(brand, model, engineVolume);
+
+    public enum capacity {extraSmall(0,10), small(10,25),middle(25,50), large(50,80), extraLarge(80,120);
+    private int minSeats;
+    private int maxSeats;
+
+        capacity(int minSeats, int maxSeats) {
+            this.minSeats = minSeats;
+            this.maxSeats = maxSeats;
+        }
+
+        public int getMinSeats() {
+            return minSeats;
+        }
+
+        public void setMinSeats(int minSeats) {
+            this.minSeats = minSeats;
+        }
+
+        public int getMaxSeats() {
+            return maxSeats;
+        }
+
+        public void setMaxSeats(int maxSeats) {
+            this.maxSeats = maxSeats;
+        }
     }
+    private capacity capacity;
+    public Buss(String brand, String model, float engineVolume, capacity capacity) {
+        super(brand, model, engineVolume);
+        this.capacity = capacity;
+    }
+
+    public Buss.capacity getCapacity() {
+        return capacity;
+    }
+
+    public void setCapacity(Buss.capacity capacity) {
+        this.capacity = capacity;
+    }
+
     @Override
     public void startDriving() {
         System.out.println("Развивает скорость 100 км/ч за 20 секунд.");

@@ -1,9 +1,25 @@
 package someTransport;
 
     public class Car extends Transport implements Competing {
-        public Car(String brand, String model, float engineVolume) {
-            super(brand, model, engineVolume);
+
+        public enum body {sedan, heckBack, coupe, universal, SUV, crossover, pickup, van, minivan;
+            body() {
+            }
         }
+        private body carBody;
+        public Car(String brand, String model, float engineVolume, body carBody) {
+            super(brand, model, engineVolume);
+            this.carBody = carBody;
+        }
+
+        public body getCarBody() {
+            return carBody;
+        }
+
+        public void setCarBody(body carBody) {
+            this.carBody = carBody;
+        }
+
         @Override
         public void startDriving() {
             System.out.println("Развивает скорость 100 км/ч за 7 секунд.");
